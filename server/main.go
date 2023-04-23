@@ -9,17 +9,18 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
+
 func healthcheck(c *fiber.Ctx) error {
 	return c.SendString("OK");
 }
+
 func findVideo(c *fiber.Ctx) error {
 	fmt.Println("Hit video route")
-	video, err := os.ReadFile("../videos/rain.mp4");
+	video, err := os.ReadFile("../videos/rain.mp4"); 
     if err != nil {
         log.Fatal(err)
     }
 	return c.Status(fiber.StatusOK).SendStream(bytes.NewReader([]byte(video)))
-
 }
 
 func main(){
